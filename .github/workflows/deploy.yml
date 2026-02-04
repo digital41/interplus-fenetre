@@ -25,13 +25,11 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Deploy to Hostinger via SCP
-        uses: appleboy/scp-action@v0.1.7
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          host: '148.230.127.222'
-          port: 65002
-          username: 'u234542620_3384XsoNz'
-          password: ${{ secrets.SFTP_PASSWORD }}
-          source: 'dist/*'
-          target: 'public_html'
-          strip_components: 1
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: ./
