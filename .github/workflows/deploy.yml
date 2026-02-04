@@ -33,6 +33,6 @@ jobs:
           lftp -u "${{ secrets.SFTP_USERNAME }},${{ secrets.SFTP_PASSWORD }}" -p ${{ secrets.SFTP_PORT }} sftp://${{ secrets.SFTP_SERVER }} << EOF
           set sftp:auto-confirm yes
           set ssl:verify-certificate no
-          mirror -R --verbose --delete ./dist/ ./public_html/
+          mirror -R --verbose --delete --ignore-time ./dist/ ./public_html/
           bye
           EOF
