@@ -33,5 +33,5 @@ jobs:
           username: 'u234542620_3384XsoNz'
           password: ${{ secrets.SFTP_PASSWORD }}
           local_path: './dist/*'
-          remote_path: '/public_html/'
+          remote_path: './public_html/'
           sftpArgs: '-o StrictHostKeyChecking=no'
