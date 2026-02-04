@@ -25,6 +25,14 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Debug - Show index.html content
+        run: |
+          echo "=== Content of dist/index.html ==="
+          cat dist/index.html
+          echo ""
+          echo "=== Files in dist/ ==="
+          ls -la dist/
+
       - name: Install lftp
         run: sudo apt-get install -y lftp
 
@@ -34,5 +42,7 @@ jobs:
           set sftp:auto-confirm yes
           set ssl:verify-certificate no
           mirror -R --verbose --delete --ignore-time ./dist/ ./public_html/
+          echo "=== Verifying uploaded index.html ==="
+          cat ./public_html/index.html
           bye
           EOF
