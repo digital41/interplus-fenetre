@@ -25,13 +25,13 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Deploy to Hostinger via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      - name: Deploy to Hostinger via SCP
+        uses: appleboy/scp-action@v0.1.7
         with:
-          server: '148.230.127.222'
+          host: '148.230.127.222'
           port: 65002
           username: 'u234542620_3384XsoNz'
           password: ${{ secrets.SFTP_PASSWORD }}
-          local_path: './dist/*'
-          remote_path: './public_html/'
-          sftpArgs: '-o StrictHostKeyChecking=no'
+          source: 'dist/*'
+          target: 'public_html'
+          strip_components: 1
